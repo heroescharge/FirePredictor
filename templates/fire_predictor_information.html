@@ -1,0 +1,351 @@
+<html>
+    <head>
+    	<title>Fire Predictor</title>
+    	<style>   
+            @import url("https://fonts.googleapis.com/css?family=Lato:300,400,600,700&amp;lang=en");  
+            .banner {
+                background: rgba(23,23,23);
+                height:200px;
+            }
+            .banner_content {
+                max-width: 100%;
+                margin: 0 auto;
+                display: flex;
+                align-items:center;
+            }
+            .banner_text {
+                flex-grow: 1;
+                line-height: 1;
+            }
+            .fire-logo {
+                position: absolute;
+                top:32px;
+                left: 300px;
+                height:16%;
+                width:10%;
+            }
+            .title {
+                font-size: 70px;
+                font-family: "Lato";
+                background: linear-gradient(to right, rgb(255, 0, 55),rgb(255, 230, 0));
+                position:absolute;
+                left:420px;
+                -webkit-text-fill-color: transparent;
+                -webkit-background-clip: text;
+            }
+            body {
+                margin: 0;
+                background: white;
+            }
+            .home-page {
+                font-family: "Lato";
+                font-size: 35px;
+                position:absolute;
+                left: 110px;
+                top: 70px;
+                color: white;
+                text-decoration: none;
+            }
+            .info-page {
+                font-family: "Lato";
+                font-size: 35px;
+                position:absolute;
+                top:70px;
+                right: 110px;
+                color: white;
+                text-decoration: none;
+            }
+            .project-motivation-section {
+                background-color:white;
+                height:390px;
+                position:absolute;
+                top:642px;
+                width:100%;
+                display:flex;
+            }
+            .project-motivation {
+                font-family: "Lato";
+                color: rgba(23,23,23);
+                font-size: 25px;
+                position:absolute;
+                top:125px;
+                left:120px;
+                line-height: 1.5;
+            }
+            .globe-img {
+                position:absolute;
+                right:540px;
+                top:400px;
+                width:9%;
+                height:20%;
+            }
+            .textbox-description {
+                font-size:35px;
+                color:black;
+                font-family: "Lato";
+                position: absolute;
+                right: 267px;
+                top: 1086px;
+                font-weight: bold;
+            }
+            .input-textbox {
+                font-size:35px;
+                font-family: "Lato";
+                color: black;
+                width: 150px;
+                position: absolute;
+                right: 97px;
+                top: 1086px;
+                font-weight: bold;
+            }
+            .current-weather-map-description {
+                position: absolute;
+                text-align:center;
+                top: 1050px;
+                left: 130px;
+                font-size:35px;
+                font-family: "Lato";
+                color: black;
+                font-weight: bold;
+            }
+            .current-weather-map-img {
+                position:absolute;
+                left:25px;
+                top:1150px;
+                width:45%;
+                height:55%;
+            }
+            .globe-img {
+                position:absolute;
+                left:560px;
+                top:1020px;
+                width:14%;
+                height:30%;
+            }
+            .lower-banner {
+                position:absolute;
+                width: 100%;
+                height:250px;
+                top:3350px;
+                background-color: rgb(23,23,23);
+            }
+            .fire-logo2 {
+                position: absolute;
+                bottom:120px;
+                left: 40px;
+                height:38%;
+                width:10%;
+            }
+            .title2 {
+                font-size: 70px;
+                font-family: "Lato";
+                background: linear-gradient(to right, rgb(255, 0, 55),rgb(255, 230, 0));
+                position:absolute;
+                bottom:80px;
+                left:150px;
+                -webkit-text-fill-color: transparent;
+                -webkit-background-clip: text;
+            }
+            .creators {
+                font-size: 30px;
+                font-family: "Lato";
+                color:rgb(255, 0, 55);
+                position:absolute;
+                bottom:30px;
+                left:150px;
+            }
+            .descriptions{
+                font-size: 60px;
+                font-family:"Lato";
+                color:rgba(23,23,23);
+                position: absolute;
+                top: 16px;
+                left: 30px;
+            }
+            .working-section{
+                position:absolute;
+                top:930px;
+                width:100%;
+            }
+            .fire-key {
+                position:absolute;
+                top:250px;
+                left:100px;
+                vertical-align:center;
+                height:400px;
+                width:550px;
+            }
+            .building-section{
+                position:absolute;
+                top:1450px;
+                width:100%;
+            }
+            .challenges-section{
+                position:absolute;
+                top:1780px;
+                width:100%;
+            }
+            .accomplishments-section{
+                position:absolute;
+                top:2150px;
+                width:100%;
+            }
+            .learned-section {
+                position:absolute;
+                top:2470px;
+                width:100%
+            }
+            .next-section{
+                position:absolute;
+                top:2710px;
+                width:100%;
+            }
+            .what-we-used{
+                position:absolute;
+                top:2960px;
+                width:100%;
+            }
+        </style>
+    	<meta charset="UTF-8">
+    </head>
+
+    <body>
+    	<div class = "banner">
+            <div class = "banner_content">
+              <div class = "banner_text">
+                <a href="fire_predictor_website.html" class = "home-page"> HOME </a>
+                <img src = "fire-drawing.png" class = "fire-logo" > 
+                <h1 class = "title">FIRE PREDICTOR</h1>
+                <a href = "fire_predictor_information.html" class = "info-page"> INFO </a>   
+                </div>
+            </div>
+          </div>
+          <img src = "fire2_cropped.jpg">
+        <div class = "project-motivation-section">
+            <h1 class = "descriptions"> 
+                Inspiration
+            </h1>
+            <h1 class = "project-motivation">
+                Living in California, we constantly suffer from annual fires as climate change continues <br>
+                to warm the globe. Unfortunately, it seems that many do not understand the fate of our <br>
+                environment if we fail to take preventative action. The first step to stopping forest <br>
+                fires is to spread awareness so that everybody can join our cause.
+            </h1> 
+        </div>
+        <div class = "working-section"> 
+            <h1 class = "descriptions">
+                What it does
+            </h1>
+            <h1 class = "project-motivation">
+                Our program shows users how the risk of fires will continue to increase in the future. Users<br>
+                can input any year, to generate a color-coded map that shows how vulnerable various regions of<br>
+                the United States will be to fires.
+            </h1>
+            <img src = "fire map key.png" class = "fire-key">
+        </div>
+
+        <div class = "building-section"> 
+            <h1 class = "descriptions">
+                How we built it
+            </h1>
+            <h1 class = "project-motivation">
+                For the model itself, uses Python backend to efficiently compute data and generate images. By<br>
+                analyzing data sets for vegetation, temperature, and humidity, our model can accurately<br>
+                generate a risk index for every region in the United States. With Python's Pillow library,<br>
+                we were able to take images as input, and output a color-coded map that demonstrates the results.
+            </h1>
+        </div>
+
+        <div class = "challenges-section"> 
+            <h1 class = "descriptions">
+                Challenges we ran into
+            </h1>
+            <h1 class = "project-motivation">
+                Despite having plenty of back-end experience, we quickly realized that our team lacked experience <br>
+                in front-end. After creating our fire predicting model, we quickly began to accommodate ourselves <br>
+                with HTML, and the Python Flask framework in order to make a website for our creation. Additionally,<br>
+                one of the challenges of a model that attempts to predict the future is finding equations that give<br>
+                realistic results. To solve this issue, we had to scour the web for hours, looking for reputable<br>
+                research papers to create a cumulative model that accurately predicts fire risk.
+            </h1>
+        </div>
+
+        <div class = "challenges-section"> 
+            <h1 class = "descriptions">
+                Challenges we ran into
+            </h1>
+            <h1 class = "project-motivation">
+                Despite having plenty of back-end experience, we quickly realized that our team lacked experience <br>
+                in front-end. After creating our fire predicting model, we quickly began to accommodate ourselves <br>
+                with HTML, and the Python Flask framework in order to make a website for our creation. Additionally,<br>
+                one of the challenges of a model that attempts to predict the future is finding equations that give<br>
+                realistic results. To solve this issue, we had to scour the web for hours, looking for reputable<br>
+                research papers to create a cumulative model that accurately predicts fire risk.
+            </h1>
+        </div>
+
+        <div class = "accomplishments-section"> 
+            <h1 class = "descriptions">
+                Accomplishments that we're proud of
+            </h1>
+            <h1 class = "project-motivation">
+                One of our greatest accomplishments was creating an accurate model that used image I/O<br>
+                to generate maps of fire risk. Another accomplishment was creating an aesthetic website<br>
+                that allows users to see fire risk any number of years into the future. By scouring public<br>
+                databases of forest fire data for countless hours, and learning how to use Flask/HTML,<br>
+                we were ultimately successful in our endeavors.
+            </h1>
+        </div>
+        <div class = "accomplishments-section"> 
+            <h1 class = "descriptions">
+                Accomplishments that we're proud of
+            </h1>
+            <h1 class = "project-motivation">
+                One of our greatest accomplishments was creating an accurate model that used image I/O<br>
+                to generate maps of fire risk. Another accomplishment was creating an aesthetic website<br>
+                that allows users to see fire risk any number of years into the future. By scouring public<br>
+                databases of forest fire data for countless hours, and learning how to use Flask/HTML,<br>
+                we were ultimately successful in our endeavors.
+            </h1>
+        </div>
+        <div class = "learned-section"> 
+            <h1 class = "descriptions">
+                What we learned
+            </h1>
+            <h1 class = "project-motivation">
+                We learned a lot by working on our project fire predictor. As stated earlier we barely had<br>
+                any experience with front-end development so we learned how to make a website from scratch.<br>
+                Additionally, we learned the intricacies of cloud platforms such as google cloud.
+            </h1>
+        </div>
+        <div class = "next-section"> 
+            <h1 class = "descriptions">
+                What's next for Fire Predictor
+            </h1>
+            <h1 class = "project-motivation">
+                We would like to expand the fire predictor to include global data so we could expand our services<br>
+                to the entire globe. We will also include more variables such as wind speed to increase the<br>
+                accuracy of our model.
+            </h1>
+        </div>
+
+        <div class = "what-we-used"> 
+            <h1 class = "descriptions">
+                Built With
+            </h1>
+            <h1 class = "project-motivation">
+                •	Python<br>
+                •	Flask<br>
+                •	HTML<br>
+                •	CSS<br>
+            </h1>
+        </div>
+
+        <div class = lower-banner>
+            <img src = "fire-drawing.png" class = "fire-logo2" > 
+            <h1 class = "title2">FIRE PREDICTOR</h1>
+            <h1 class = "creators"> Abhi K. &emsp; Ishir G. &emsp; Rachit V. &emsp; Siddh S.</h1>
+            </div>
+        </div>
+    </body>
+</html>

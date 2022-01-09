@@ -1,0 +1,324 @@
+<html>
+    <head>
+    	<title>Fire Predictor</title>
+    	<style>   
+            @import url("https://fonts.googleapis.com/css?family=Bebas+Neue:300,400,600,700&amp;lang=en");
+            @import url("https://fonts.googleapis.com/css?family=Lato:300,400,600,700&amp;lang=en");  
+            .banner {
+                background: rgba(23,23,23);
+                height:200px;
+            }
+            .banner_content {
+                max-width: 100%;
+                margin: 0 auto;
+                display: flex;
+                align-items:center;
+            }
+            .banner_text {
+                flex-grow: 1;
+                line-height: 1;
+            }
+            .fire-logo {
+                position: absolute;
+                top:32px;
+                left: 300px;
+                height:16%;
+                width:10%;
+            }
+            .title {
+                font-size: 70px;
+                font-family: "Lato";
+                background: linear-gradient(to right, rgb(255, 0, 55),rgb(255, 230, 0));
+                position:absolute;
+                left:420px;
+                -webkit-text-fill-color: transparent;
+                -webkit-background-clip: text;
+            }
+            body {
+                margin: 0;
+            }
+            .home-page {
+                font-family: "Lato";
+                font-size: 35px;
+                position:absolute;
+                left: 110px;
+                top: 70px;
+                color: white;
+                text-decoration: none;
+            }
+            .info-page {
+                font-family: "Lato";
+                font-size: 35px;
+                position:absolute;
+                top:70px;
+                right: 110px;
+                color: white;
+                text-decoration: none;
+            }
+            .project-motivation-section {
+                background-color:rgba(23,23,23);
+                height:390px;
+                position:absolute;
+                top:642px;
+                width:100%;
+                display:flex;
+            }
+            .project-motivation {
+                font-family: "Lato";
+                color: white;
+                font-size: 50px;
+                text-align:center;
+                position:absolute;
+                top:20px;
+                left:65px;
+            }
+            .globe-img {
+                position:absolute;
+                right:540px;
+                top:400px;
+                width:9%;
+                height:20%;
+            }
+            .textbox-description {
+                font-size:60px;
+                color:rgb(37, 34, 34);
+                font-family: "Bebas Neue";
+                position: absolute;
+                right: 400px;
+                top: 1520px;
+            }
+            .input-textbox {
+                font-size:50px;
+                font-family: "Bebas Neue";
+                color: rgb(37, 34, 34);
+                width: 150px;
+                position: absolute;
+                right: 245px;
+                top: 1520px;
+            }
+            .submit-button {
+                font-size: 30px;
+                position: absolute;
+                font-family: "Bebas Neue";
+                right: 150px;
+                top:1533px;
+                width: auto;
+                height: auto;
+            }
+            .predicted-weather-map-description {
+                position: absolute;
+                right: 200px;
+                top: 1050px;
+                font-size:35px;
+                font-family: "Lato";
+                color: rgb(37, 34, 34);
+                font-weight: bold;
+                
+                
+            }
+            .predicted-weather-map-img {
+                position: absolute;
+                right: 25px;
+                top: 1150;
+                width: 45%;
+                height: 55%;
+            }
+            .current-weather-map-description {
+                position: absolute;
+                text-align:center;
+                top: 1050px;
+                left: 130px;
+                font-size:35px;
+                font-family: "Lato";
+                color: black;
+                font-weight: bold;
+            }
+            .current-weather-map-img {
+                position:absolute;
+                left:25px;
+                top:1150px;
+                width:45%;
+                height:55%;
+            }
+            .globe-img {
+                position:absolute;
+                left:560px;
+                top:1020px;
+                width:14%;
+                height:30%;
+            }
+            .lower-banner {
+                position:absolute;
+                width: 100%;
+                height:250px;
+                top:1600px;
+                background-color: rgb(23,23,23);
+            }
+            .fire-logo2 {
+                position: absolute;
+                bottom:120px;
+                left: 40px;
+                height:38%;
+                width:10%;
+            }
+            .title2 {
+                font-size: 70px;
+                font-family: "Lato";
+                background: linear-gradient(to right, rgb(255, 0, 55),rgb(255, 230, 0));
+                position:absolute;
+                bottom:80px;
+                left:150px;
+                -webkit-text-fill-color: transparent;
+                -webkit-background-clip: text;
+            }
+            .creators {
+                font-size: 30px;
+                font-family: "Lato";
+                color:rgb(255, 0, 55);
+                position:absolute;
+                bottom:30px;
+                left:150px;
+            }
+        </style>
+    	<meta charset="UTF-8">
+    </head>
+
+    <body>
+    	<div class = "banner">
+            <div class = "banner_content">
+              <div class = "banner_text">
+                <a href="fire_predictor_website.html" class = "home-page"> HOME </a>
+                <img src = "{{url_for('static', filename='fire-drawing.png')}}" class = "fire-logo" > 
+                <h1 class = "title">FIRE PREDICTOR</h1>
+                <a href = "fire_predictor_information.html" class = "info-page"> INFO </a>   
+                </div>
+            </div>
+          </div>
+          <img src = "{{url_for('static', filename='fire2_cropped.jpg')}}">
+
+        <div class = "project-motivation-section">
+            <h1 class = "project-motivation">
+                The consistent spread of wildfires across the<br>
+                globe is alarming, largely stimulated by the lack of<br>
+                awareness for climate change and global warming.<br> 
+                After being swept under the rug for decades, <br>
+                now is the time for change.<br>
+            </h1> 
+        </div>
+
+    	<!-- <h1 class = project-motivation>
+            The consistent spread of wildfires across the globe is alarming, <br>
+            largely stimulated by the lack of awareness for climate change and global warming.<br>
+            After being swept under the rug for decades, now is the time for change.<br>
+        </h1> -->
+
+    	<!-- <p class=note>
+            Note: The following diagram is based solely on the 
+            assumption that current climate policies are not changed.
+        </p> -->
+        <!--textbox--> 
+
+        <div class = banner>
+            <form class = "grid" action = "/predict" method = "POST"> 
+                <div class = container vertical-align:right>
+                    <p class = "predicted-weather-map-description"> Prediction Map</p>
+
+                    {% if year %}
+                    
+                    <img src ="{{url_for('static', filename='blankmap.png')}}"
+                     alt = "Predicted Fire Danger Map" class = "predicted-weather-map-img"  width= 600 
+                     height=400><br>
+                     
+                     {% endif %}
+                    </div>
+                
+
+                <label for="year" class ="textbox-description">Year:</label><br>
+                <input class = "input-textbox" type="text" id="year" name="year"><br>
+                <input type="submit" value="Enter" class = "submit-button">
+            </form> 
+            
+            <p class = "current-weather-map-description"> Current Map</p>
+            <img src ="{{url_for('static', filename='year0.png')}}"
+             alt = "Current (2021) Fire Danger Map" class = "current-weather-map-img"><br>
+             
+             
+        </div>
+        <div class = lower-banner>
+            <img src = "{{url_for('static', filename='fire-drawing.png')}}" class = "fire-logo2" > 
+            <h1 class = "title2">FIRE PREDICTOR</h1>
+            <h1 class = "creators"> Abhi K. &emsp; Ishir G. &emsp; Rachit V. &emsp; Siddh S.</h1>
+            </div>
+        </div>
+
+        <!--   	<div class="polaroid">
+    		<img src="Fire_Danger.png" alt="Current (2021) Fire Danger Map">
+    		<div class="container">
+                <p>
+                The image indicates the fire risk based on the key in 2021 on average.
+                </p>
+			</div>
+		</div> 
+
+        <div class="slideshow-container">
+            <div class="mySlides fade">
+                <div class="slides-number">
+                    1 / 3
+                </div>
+                <img class="vertical-align:center" src="fire.jpg">
+                <div class="text">
+                    2019 Wildfires in North California
+                </div>
+            </div>
+
+            <div class="mySlides fade">
+                <div class="slides-number">
+                    2 / 3
+                </div>
+                <img class="vertical-align:center" src="paris_accord.jpg">
+                <div class="text">
+                    Paris Accord of 2015
+                </div>
+            </div>
+
+            <div class="mySlides fade">
+                <div class="slides-number">
+                    3 / 3
+                </div>
+                <img class="vertical-align:center" src="fire2.jpg">
+                <div class="text">
+                    2019 Wildfires in South California Spurred by Natural Grass Fires
+                </div>
+            </div>
+		</div>
+
+		<br>
+		<div style="text-align:center">
+  			<span class="circles"></span> 
+  			<span class="circles"></span> 
+  			<span class="circles"></span> 
+		</div>
+
+		<script>
+            var slideIndex = 0;
+            showSlides();
+
+            function showSlides() {
+            var i;
+            var slides = document.getElementsByClassName("mySlides");
+            var dots = document.getElementsByClassName("circles");
+            for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";  
+            }
+            slideIndex++;
+            if (slideIndex > slides.length) {slideIndex = 1}    
+            for (i = 0; i < dots.length; i++) {
+                dots[i].className = dots[i].className.replace(" active", "");
+            }
+            slides[slideIndex-1].style.display = "block";  
+            dots[slideIndex-1].className += " active";
+            setTimeout(showSlides, 5000);
+            }
+		</script> -->
+    </body>
+</html>
