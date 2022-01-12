@@ -7,26 +7,29 @@ import pandas as pd
 from PIL import ImageDraw
 
 import time
+from multiprocessing import Process
+import pickle
+
 
 # install library "openpyxl" as well
 
-#open files
+# open files
 def simulate(real_years):
     #df = pd.read_excel("uscities.xlsx")
 
-    #Resize image
+    # Resize image
     temp_img = Image.open("temperature_map.png")
-    #temp_img= temp_img.resize((800, 488), Image.ANTIALIAS)
+    #temp_img= temp_img.resize((320, 195), Image.ANTIALIAS)
     temp_width, temp_height = temp_img.size
     temp_rgb = temp_img.convert("RGB")
 
     humidity_img = Image.open("humidities.png")
-    #humidity_img = humidity_img.resize((800, 488), Image.ANTIALIAS)
+    #humidity_img = humidity_img.resize((320, 195), Image.ANTIALIAS)
     hum_width, hum_height = humidity_img.size
     hum_rgb = humidity_img.convert("RGB")
 
     vegetation_img = Image.open("vegetations.png")
-    #vegetation_img= vegetation_img.resize((800, 488), Image.ANTIALIAS)
+    #vegetation_img= vegetation_img.resize((320, 195), Image.ANTIALIAS)
     veg_width, veg_height = vegetation_img.size
     veg_rgb = vegetation_img.convert("RGB")
 
@@ -55,7 +58,6 @@ def simulate(real_years):
             return "water"
         else:
             return "yellow"
-
 
     def get_humidity_pixels(pixel_x, pixel_y, pixel_rgb):
         try:
@@ -95,7 +97,6 @@ def simulate(real_years):
 
             else:
                 return "water"
-
 
     def get_vegetation_pixels(pixel_x, pixel_y, pixel_rgb):
         # Set up images
@@ -146,66 +147,102 @@ def simulate(real_years):
             risk *= 0.82
         elif (veg == "High"):
             risk *= 1.5
-                    
-        #GYR color interpolation
-        rating = 10 * (risk - 20)/(70 - 20) * 1.5 #1.5 color scale factor
+
+        # GYR color interpolation
+        rating = 10 * (risk - 20)/(70 - 20) * 1.5  # 1.5 color scale factor
         if (rating > 10):
             rating = 10
         elif (rating < 0):
             rating = 0
         rating = 10 - rating
-            #rating = interp(risk, [20, 70], [0, 10])
-            
+        #rating = interp(risk, [20, 70], [0, 10])
+
         if (rating > 5):
             parts = (1-((rating-5)/5))
         else:
             parts = rating/5
-        #parts = (rating > 5) ? (1-((rating-5)/5)) : rating/5
+        # parts = (rating > 5) ? (1-((rating-5)/5)) : rating/5
         parts = round(parts * 255)
         if (rating < 5):
             color = (255, parts, 0)
         elif (rating > 5):
             color = (parts, 255, 0)
         else:
-            color = (255,255,0)
+            color = (255, 255, 0)
         return color
-        
+    
+    #runs chunk render methods simultaniously
+    def run_parallel(*args):
+        processes = []
+        for chunk in args:
+            process = Process(target=chunk)
+            process.start()
+            processes.append(process)
+
+        for process in processes:
+            process.join()
+
+    #for each chunk of the map
+    class chunk:
+        def __init__(self, start_x, end_x, y):
+            self.start_x = start_x
+            self.end_x = end_x
+            self.y = y
+
+        def make_chunk(self, temp_rgb, hum_rgb, temp_color_to_fire_risk_index, humidity_to_fire_risk_index, future_years, blankmappixels):
+            for x in range(self.start_x, self.end_x):
+                for y in range(0, self.y):
+                    pixel_temp_color = get_temp_pixels(x, y, temp_rgb)
+                    pixel_humidity_color = get_humidity_pixels(x, y, hum_rgb)
+                    pixel_color = get_fire_risk_index(
+                        (temp_color_to_fire_risk_index[pixel_temp_color]), humidity_to_fire_risk_index[pixel_humidity_color], get_vegetation_pixels(x, y, veg_rgb), future_years)
+
+                    blankmappixels[x, y] = pixel_color
 
     def futureSimulation(real_years):
+
         future_years = real_years
         future_years = max(future_years, 0)
         if future_years < 10:
             future_years = interp(future_years, [0, 10], [6, 10])
-        future_years += 10 #shift by few years for scaling
+        future_years += 10  # shift by few years for scaling
         blankmap = Image.open("static/blankmap.png")
-        
-        #Reset blankmap
+
+        # Reset blankmap
         draw = ImageDraw.Draw(blankmap)
-        
-        blankmap = blankmap.resize((800, 488), Image.ANTIALIAS)
-        draw.rectangle((0, 488, 800, 0), fill=(255, 255, 255))
+        map_x, map_y = 320, 195 #dimensions
+        blankmap = blankmap.resize((map_x, map_y), Image.ANTIALIAS)
+        draw.rectangle((0, map_y, map_x, 0), fill=(255, 255, 255))
 
         blankmappixels = blankmap.load()
 
         temp_color_to_fire_risk_index = {"dark_red": 6.25, "red": 5.5, "orange": 4.75,
-                                        "yellow": 4, "blue": 3.25, "green": 2.5, "purple": 1.75, "pink": 1, "water": 0}
+                                         "yellow": 4, "blue": 3.25, "green": 2.5, "purple": 1.75, "pink": 1, "water": 0}
         color_to_temp = {"dark_red": 72.5, "red": 67.5, "orange": 62.5, "yellow": 57.5,
-                        "blue": 52.5, "green": 47.5, "purple": 42.5, "pink": 37.5, "water": 0}
+                         "blue": 52.5, "green": 47.5, "purple": 42.5, "pink": 37.5, "water": 0}
         humidity_to_fire_risk_index = {"blue": 1, "dark_green": 1.75, "green": 2.5,
-                                    "yellow_green": 3.25, "light_green": 4, "yellow": 4.75, "orange": 5.5, "red": 6.25, "water": 0}
+                                       "yellow_green": 3.25, "light_green": 4, "yellow": 4.75, "orange": 5.5, "red": 6.25, "water": 0}
         temp_to_color = {value: key for (key, value) in color_to_temp.items()}
 
         width, height = blankmap.size
         pixel_rgb = blankmap.convert("RGB")
 
+        #make number of chunks to render simultaniously
+        chunks = []
+        x = 0
+        y = height
+        num_of_chunks = 4 #number of chunks map split into
+        for i in range(num_of_chunks):
+            start_x = int(x + (i*(width/num_of_chunks)))
+            end_x = int(start_x + (width/num_of_chunks))
+
+            chunks.append(chunk(start_x, end_x, y))
+
         # increasing temperature as years continue
-        for x in range(0, 800):
-            for y in range(0, 488):
-                pixel_temp_color = get_temp_pixels(x, y, temp_rgb)
-                pixel_humidity_color = get_humidity_pixels(x, y, hum_rgb)
-                pixel_color = get_fire_risk_index(temp_color_to_fire_risk_index[pixel_temp_color], humidity_to_fire_risk_index[pixel_humidity_color], get_vegetation_pixels(x, y, veg_rgb), future_years)
-                
-                blankmappixels[x,y] = pixel_color
+        #getting methods to run parralel
+        made_chunks = [item.make_chunk(temp_rgb, hum_rgb, temp_color_to_fire_risk_index, humidity_to_fire_risk_index, future_years, blankmappixels) for item in chunks]
+
+        run_parallel(made_chunks)
         blankmap.save("static/blankmap.png")
 
     futureSimulation(real_years)
